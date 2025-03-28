@@ -44,11 +44,13 @@ public class Bereshit_101 {
 		double NN = 0.7; // rate[0,1]
 
 
-		double n1 = 0.04;
-		double n2 = 0.001;
-		double n3 = 0.1;
-		double prevError = 0.0;
-		double errorSum = 0.0;
+//		double n1 = 0.04;
+//		double n2 = 0.001;
+//		double n3 = 0.1;
+//		double prevError = 0.0;
+//		double errorSum = 0.0;
+
+		PID pid = new PID(0.04,0.001,0.1);
 
 		// ***** main simulation loop ******
 		while(aboveGroud>=0) {
@@ -67,7 +69,7 @@ public class Bereshit_101 {
 
 			double vsDest;
 			// over 2 km above the ground
-			if(aboveGroud>2000) {	// maintain a vertical speed of [20-25] m/s
+			if(aboveGroud>2000) {	// maintain a vertical speed of 23 m/s
 				vsDest = 23;
 			}
 			// lower than 2 km - horizontal speed should be close to zero
@@ -80,10 +82,10 @@ public class Bereshit_101 {
 				}
 
 				if(ang>3) {
-					ang-=3; // rotate to vertical position
+					ang-=3*dt; // rotate to vertical position
 				}
 				else if(ang<-3){
-					ang+=3;
+					ang+=3*dt;
 				}
                 else{
                     ang = 0;
@@ -91,13 +93,17 @@ public class Bereshit_101 {
 
 			}
 
+			NN -= pid.calculateNNoutput(vsDest,vs);
+
 			//PID
-			double error = vsDest - vs; // if vs > vsDest -> error is negative -> we want bigger NN
-			errorSum += error;
-			double stopRate = error - prevError;
-			double output = error*n1 + errorSum*n2 + stopRate*n3;
-			prevError = error;
-			NN-=output;
+//			double error = vsDest - vs; // if vs > vsDest -> error is negative -> we want bigger NN
+//			errorSum += error;
+//			double stopRate = error - prevError;
+//			double output = error*n1 + errorSum*n2 + stopRate*n3;
+//			prevError = error;
+//			NN-=output;
+
+
 
 
 			// bound NN
