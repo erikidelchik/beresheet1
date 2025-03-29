@@ -40,14 +40,14 @@ public class Beresheet {
      */
     public Beresheet() {
         // Initial conditions (as in original main method)
-        vs = 54.8;
-        hs = 932;
+        vs = 24.8; //54.8
+        hs = 932.2;
         dist = 181 * 1000;       // 181 km in meters
         ang = 58.3;
         aboveGround = 13748;     // altitude in meters
         time = 0;
         dt = 1;                  // time step (sec)
-        fuel = 121;
+        fuel = 121.06;
         weight = WEIGHT_EMP + fuel;
         NN = 0.7;
         acc = 0;
