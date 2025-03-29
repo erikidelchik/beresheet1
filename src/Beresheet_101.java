@@ -1,10 +1,4 @@
 /**
- * This class represents the basic flight controller and simulation of the Bereshit spacecraft.
- * It encapsulates the simulation state and logic so that external classes (e.g., a Simulator)
- * can drive the simulation without repeating the physics code.
- *
- * Original simulation parameters and PID control logic are preserved.
- *
  * Author: ben-moshe (modified for integration)
  */
 public class Beresheet_101 {
@@ -32,7 +26,7 @@ public class Beresheet_101 {
 	private double NN;          // throttle parameter [0,1]
 	private double acc;         // current acceleration (m/s²)
 
-	// PID controller instance (from PIDgit.java)
+	// PID controller instance
 	private PID pid;
 
 	/**
