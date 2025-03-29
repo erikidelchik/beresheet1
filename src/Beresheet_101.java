@@ -44,14 +44,14 @@ public class Beresheet_101 {
 		hs = 932;
 		dist = 181 * 1000;       // 181 km in meters
 		ang = 58.3;
-		aboveGround = 19748;     // altitude in meters  13748
+		aboveGround = 13748;     // altitude in meters  13748
 		time = 0;
 		dt = 1;                  // time step (sec)
-		fuel = 171;              // 121
+		fuel = 121;              // 121
 		weight = WEIGHT_EMP + fuel;
 		NN = 0.7;
 		acc = 0;
-		pid = new PID(0.04, 0.001, 0.1);
+		pid = new PID(0.04, 0.001, 0.2);
 	}
 
 	public static double accMax(double weight) {
@@ -82,7 +82,8 @@ public class Beresheet_101 {
 		double vsDest;
 		if (aboveGround > 2000) {
 			vsDest = 25;
-		} else {
+		}
+		else {
 			vsDest = (aboveGround > 125) ? 15 : 2.5;
 			// Gradually rotate to vertical 0
 			if (ang > 3) {
@@ -96,7 +97,7 @@ public class Beresheet_101 {
 			}
 		}
 
-		// Update throttle using the PID controller.
+		// PID
 		NN -= pid.calculateNNoutput(vsDest, vs);
 
 		if (NN < 0) {
@@ -121,7 +122,8 @@ public class Beresheet_101 {
 			fuel -= dw;
 			weight = WEIGHT_EMP + fuel;
 			acc = NN * accMax(weight);
-		} else {
+		}
+		else {
 			acc = 0;
 		}
 
@@ -146,13 +148,14 @@ public class Beresheet_101 {
 		if ((vs > 2.5 || hs > 2.5) && aboveGround < 5) {
 			System.out.println("crashed");
 			aboveGround = 0;
-		} else if (vs <= 2.5 && hs <= 2.5 && aboveGround <= 5) {
+		}
+		else if (vs <= 2.5 && hs <= 2.5 && aboveGround <= 5) {
 			System.out.println("landed");
 			aboveGround = 0;
 		}
 	}
 
-	// --- Getters ---
+	// Getters
 	public double getVs() { return vs; }
 	public double getHs() { return hs; }
 	public double getDist() { return dist; }
