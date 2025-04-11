@@ -33,7 +33,7 @@ public class Beresheet {
     private double acc;         // current acceleration (m/s²)
 
     // PID controller instance (from PIDgit.java)
-    private PIDgit pid;
+    private PID pid;
 
     /**
      * Constructor: Initializes simulation state to the original values.
@@ -41,17 +41,17 @@ public class Beresheet {
     public Beresheet() {
         // Initial conditions (as in original main method)
         vs = 24.8; //54.8
-        hs = 932.2;
+        hs = 932.2; //932
         dist = 181 * 1000;       // 181 km in meters
-        ang = 58.3;
-        aboveGround = 13748;     // altitude in meters
+        ang = 57.8; //58.3
+        aboveGround = 13748;   // altitude in meters 13748
         time = 0;
         dt = 1;                  // time step (sec)
-        fuel = 121.06;
+        fuel = 121.06; //121
         weight = WEIGHT_EMP + fuel;
         NN = 0.7;
         acc = 0;
-        pid = new PIDgit(0.04, 0.001, 0.1);
+        pid = new PID(0.04, 0.001, 0.1,dt);
     }
 
     public static double accMax(double weight) {
@@ -79,33 +79,60 @@ public class Beresheet {
         checkLanded();
 
         // Determine desired vertical speed based on altitude.
+        // Landing state
         double vsDest;
+
+        //** build a linear func to reduce vsDest
         if (aboveGround > 2000) {
             vsDest = 22.5;
-        } else {
-            vsDest = (aboveGround > 125) ? 15 : 2.5;
-            // Gradually rotate to vertical (0°)
-            if (ang > 3) {
-                ang -= 3 * dt;
-            } else if (ang < -3) {
-                ang += 3 * dt;
-            } else {
+        }
+
+        else {
+             if (aboveGround > 0) {
+                 double x1 = 2000;
+                 double y1 = 22.5;
+                 double x2 = 0;
+                 double y2 = 5;
+                 double m = (y1-y2)/(x1-x2);
+                 double b = m * x2;
+                 vsDest = m * aboveGround - b;
+            }
+             else {
+                 vsDest = 0;
+            }
+
+
+            ang += pid.calculateAngleOutput(0,ang,dt);
+            if (ang < 3 && ang > -3) {
                 ang = 0;
             }
+
+            // Gradually rotate to vertical (0°)
+            // ** build a pid for the angle
+//            if (ang > 3) {
+//                ang -= 3 * dt;
+//                //destAngle = 0
+//            }
+//            else if (ang < -3) {
+//                ang += 3 * dt;
+//            }
+//            else {
+//                ang = 0;
+//            }
         }
 
         // Update throttle using the PID controller.
-        NN -= pid.calculateNNoutput(vsDest, vs);
+        NN -= pid.calculateNNoutput(vsDest, vs, dt);
 
-            if (NN < 0) {
-                NN = 0;
-            }
-            if (NN > 1) {
-                NN = 1;
-            }
-            if (aboveGround <= 3) {
-                NN = 0;
-            }
+        if (NN < 0) {
+            NN = 0;
+        }
+        if (NN > 1) {
+            NN = 1;
+        }
+        if (aboveGround <= 3) {
+            NN = 0;
+        }
 
         // Compute acceleration components.
         double ang_rad = Math.toRadians(ang);
@@ -144,7 +171,8 @@ public class Beresheet {
         if ((vs > 2.5 || hs > 2.5) && aboveGround < 5) {
             System.out.println("crashed");
             aboveGround = 0;
-        } else if (vs <= 2.5 && hs <= 2.5 && aboveGround <= 5) {
+        }
+        else if (vs <= 2.5 && hs <= 2.5 && aboveGround <= 5) {
             System.out.println("landed");
             aboveGround = 0;
         }
@@ -158,4 +186,5 @@ public class Beresheet {
     public double getAboveGround() { return aboveGround; }
     public double getTime() { return time; }
     public double getFuel() { return fuel; }
+    public  double getNN() {return  NN;}
 }
