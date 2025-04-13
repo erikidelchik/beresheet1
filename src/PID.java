@@ -2,6 +2,8 @@ public class PID{
     double n1;
     double n2;
     double n3;
+    double hs;
+    double vs;
     double prevError = 0.0;
     double errorSum = 0.0;
     double NNerror;
@@ -26,9 +28,6 @@ public class PID{
         prevError = NNerror;
         return NNerror*n1 + errorSum*n2 + stopRate*n3;
     }
-    public void setP(double p){
-        this.n1 = p;
-    }
 
     public double calculateAngleOutput(double angleDest,double angle,double dt){
         angError = angleDest - angle;
@@ -38,6 +37,9 @@ public class PID{
         return angError*(0.08) + angErrorSum*(n2/10) + angStopRate*(n3/10);
     }
 
+    public void setP(double p){
+        this.n1 = p;
+    }
     public void setI(double i){
         this.n2 = i;
     }
