@@ -7,7 +7,6 @@ import java.util.List;
 public class Simulator extends JPanel implements Runnable {
     private Beresheet_101 beresheet;
     private List<Point.Double> trajectory;
-    // Variables for dynamic zooming (observed maximum values)
     private double observedMaxX = 0;
     private double observedMaxAlt = 13748; // initial altitude
 
@@ -29,7 +28,7 @@ public class Simulator extends JPanel implements Runnable {
             trajectory.add(new Point.Double(simX, beresheet.getAboveGround()));
             repaint();
             try {
-                Thread.sleep(5); // control animation speed
+                Thread.sleep(10); // control animation speed
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
