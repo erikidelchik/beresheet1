@@ -72,10 +72,12 @@ public class Beresheet_101 {
 
 	public void simulateStep() {
 		if ((int) time % 10 == 0 || aboveGround < 100) {
-			System.out.println("time: " + time + ", vs:" + vs + ", hs:" + hs +
-					", dist:" + dist + ", aboveGround:" + aboveGround +
-					", angle:" + ang + ", weight:" + weight +
-					", acc:" + acc + ", fuel:" + fuel + ", NN:" + NN);
+			System.out.println(
+			    String.format(
+			        "Time: %.2f | VS: %.2f | HS: %.2f | Dist: %.2f | Altitude: %.2f | Angle: %.2f° | Weight: %.2fkg | Acc: %.2f | Fuel: %.2fL | NN: %.2f",
+			        time, vs, hs, dist, aboveGround, ang, weight, acc, fuel, NN
+			    )
+			);
 		}
 
 		// Check landing condition and print outcome.
