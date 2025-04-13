@@ -31,7 +31,7 @@
 - [Simulator](https://github.com/erikidelchik/beresheet1/blob/master/src/Simulator.java) – ממשק גרפי המדמה את תנועת החללית ואת הנחיתה על הירח.
 - [summary](https://github.com/erikidelchik/beresheet1/blob/master/Summary-report.txt) - דוח של תוצאת הסימולציה שלנו
 
-להלן גרפים המסכמים את תוצאות הסימולציה שלנו (כל הנתונים הם ביחס לפרמט Time):
+להלן גרפים המסכמים את תוצאות הסימולציה שלנו (כל הנתונים הם ביחס לפרמטר Time):
 
   ![image](https://github.com/user-attachments/assets/4465534d-dfa0-4168-b349-d82a1d1b5268)
   ![image](https://github.com/user-attachments/assets/fc1b25e0-ae02-4d53-b6c5-d07a0000887e)
