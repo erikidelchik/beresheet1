@@ -2,6 +2,8 @@ public class PID{
     double n1;
     double n2;
     double n3;
+    double hs;
+    double vs;
     double prevError = 0.0;
     double errorSum = 0.0;
     double NNerror;

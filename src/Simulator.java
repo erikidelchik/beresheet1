@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Simulator extends JPanel implements Runnable {
-    private Beresheet_101 beresheet;
+    private Beresheet beresheet;
     private List<Point.Double> trajectory;
     // Variables for dynamic zooming (observed maximum values)
     private double observedMaxX = 0;
@@ -13,7 +13,7 @@ public class Simulator extends JPanel implements Runnable {
 
     public Simulator() {
         setPreferredSize(new Dimension(800, 600));
-        beresheet = new Beresheet_101();
+        beresheet = new Beresheet();
         trajectory = new ArrayList<>();
         new Thread(this).start();
     }
@@ -90,6 +90,7 @@ public class Simulator extends JPanel implements Runnable {
         g.drawString(String.format("Vertical Speed: %.2f m/s", beresheet.getVs()), 10, 80);
         g.drawString(String.format("Horizontal Speed: %.2f m/s", beresheet.getHs()), 10, 100);
         g.drawString(String.format("Fuel: %.2f liters", beresheet.getFuel()), 10, 120);
+        g.drawString(String.format("NN: %.2f", beresheet.getNN()), 10, 140);
     }
 
     public static void main(String[] args) {
