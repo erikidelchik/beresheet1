@@ -26,22 +26,13 @@ public class PID{
         prevError = NNerror;
         return NNerror*n1 + errorSum*n2 + stopRate*n3;
     }
-    public void setP(double p){
-        this.n1 = p;
-    }
 
     public double calculateAngleOutput(double angleDest,double angle,double dt){
         angError = angleDest - angle;
-        angErrorSum += (n1/10)*angError*dt;
+        angErrorSum += 0.08*angError*dt;
         angStopRate = (angError-angPrevError)/dt;
         angPrevError = angError;
-        return angError*(0.08) + angErrorSum*(n2/10) + angStopRate*(n3/10);
+        return angError*(0.04) + angErrorSum*(0.00001) + angStopRate*(0.1);
     }
 
-    public void setI(double i){
-        this.n2 = i;
-    }
-    public void setD(double d){
-        this.n3 = d;
-    }
 }
