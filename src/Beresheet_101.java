@@ -42,7 +42,7 @@ public class Beresheet_101 {
 	 */
 	public Beresheet_101() {
 		// Initial conditions (as in original main method)
-		vs = 54.8; //54.8
+		vs = 24.8; //24.8
 		hs = 932; //932
 		dist = 181 * 1000;       // 181 km in meters
 		ang = 57.8; //58.3
