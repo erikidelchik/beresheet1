@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Simulator extends JPanel implements Runnable {
-    private Beresheet beresheet;
+    private Beresheet_101 beresheet;
     private List<Point.Double> trajectory;
     // Variables for dynamic zooming (observed maximum values)
     private double observedMaxX = 0;
@@ -13,7 +13,7 @@ public class Simulator extends JPanel implements Runnable {
 
     public Simulator() {
         setPreferredSize(new Dimension(800, 600));
-        beresheet = new Beresheet();
+        beresheet = new Beresheet_101();
         trajectory = new ArrayList<>();
         new Thread(this).start();
     }
