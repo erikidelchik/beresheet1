@@ -26,8 +26,8 @@
 כחלק מההיערכות לכך, בנינו סימולציית נחיתה, המדמה את כל שלבי המסלול וההנחיתה של החללית – כולל מנוע ראשי, חיישני גובה ובקרות.
 
 ## 📁 קבצים רלוונטיים
-- [Beresheet](https://github.com/erikidelchik/beresheet1/blob/master/Beresheet.java) – כולל את כל ההגדרות של החללית.
-- [PID](https://github.com/erikidelchik/beresheet1/blob/master/Simulator.java) – בקר PID פשוט שמאפשר שליטה מדויקת על עוצמת הלחיצה על המנוע בזמן הנחיתה.
+- [Beresheet](https://github.com/erikidelchik/beresheet1/blob/master/src/Beresheet_101.java) – כולל את כל ההגדרות של החללית.
+- [PID](https://github.com/erikidelchik/beresheet1/blob/master/src/PID.java) – בקר PID פשוט שמאפשר שליטה מדויקת על עוצמת הלחיצה על המנוע בזמן הנחיתה.
 - [Simulator](https://github.com/erikidelchik/beresheet1/blob/master/src/Simulator.java) – ממשק גרפי המדמה את תנועת החללית ואת הנחיתה על הירח.
 - [summary](https://github.com/erikidelchik/beresheet1/blob/master/Summary-report.txt) - דוח של תוצאת הסימולציה שלנו
 
