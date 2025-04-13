@@ -85,9 +85,9 @@ public class Beresheet_101 {
 
 
 
-		double angleDest; // Default target is vertical for landing
-		double hsKillThresholdLow = 5.0; // Start finalizing vertical below this hs
-		double hsKillThresholdHigh = 100.0; // Actively kill hs above this
+		double angleDest;
+		double hsKillThresholdLow = 5.0;
+		double hsKillThresholdHigh = 100.0;
 
 		// Strong angle to reduce hs quickly
 		if (hs > hsKillThresholdHigh) {
